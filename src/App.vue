@@ -1,11 +1,20 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <NavView></NavView>
+    <div class="content">主体</div>
+    <TabView></TabView>
+  </div>
 </template>
 
 <script>
+import NavView from "./components/NavView/NavView.vue";
+import TabView from "./components/TabView/TabView.vue";
 export default {
   name: "app",
-  components: {}
+  components: {
+    NavView,
+    TabView
+  }
 };
 </script>
 
