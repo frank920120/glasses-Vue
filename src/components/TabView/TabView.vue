@@ -1,10 +1,10 @@
 <template>
   <div class="tabbar-view">
-    <a href="#">首页</a>
-    <a href="#">分类</a>
-    <a href="#">搜索</a>
-    <a href="#">购物车</a>
-    <a href="#">我的</a>
+    <router-link to="/home">首页</router-link>
+    <router-link to="/sort">分类</router-link>
+    <router-link to="/search">搜索</router-link>
+    <router-link to="/cart">购物车</router-link>
+    <router-link to="/my">我的</router-link>
   </div>
 </template>
 
@@ -12,7 +12,7 @@
 export default {};
 </script>
 
-<style  scoped>
+<style scoped>
 .tabbar-view {
   height: 3.125rem;
   position: fixed;
@@ -25,5 +25,6 @@ export default {};
   width: 20%;
   text-align: center;
   line-height: 3.125rem;
+  cursor: pointer;
 }
 </style>
