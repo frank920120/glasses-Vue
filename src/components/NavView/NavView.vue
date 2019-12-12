@@ -9,12 +9,12 @@ export default {};
 
 <style scoped>
 .nav-view {
-  height: 45px;
+  height: 2.8125rem;
   background-color: red;
   color: white;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
-  line-height: 45px;
+  line-height: 2.8125rem;
   text-align: center;
 }
 </style>

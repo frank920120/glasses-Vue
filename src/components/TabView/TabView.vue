@@ -14,16 +14,16 @@ export default {};
 
 <style  scoped>
 .tabbar-view {
-  height: 50px;
+  height: 3.125rem;
   position: fixed;
   bottom: 0;
-  border-top: 1px solid black;
+  border-top: 0.0625rem solid black;
   width: 100%;
 }
 .tabbar-view a {
   display: inline-block;
   width: 20%;
   text-align: center;
-  line-height: 50px;
+  line-height: 3.125rem;
 }
 </style>
