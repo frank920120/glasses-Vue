@@ -34,6 +34,7 @@ export default {
 .category-view {
   display: flex;
   justify-content: center;
+  background: white;
 }
 .category-view > .category-item {
   width: 20%;
@@ -41,7 +42,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.6875rem 0 0;
+  padding: 0.6875rem 0 0.9375rem;
 }
 
 .category-item > .img {
