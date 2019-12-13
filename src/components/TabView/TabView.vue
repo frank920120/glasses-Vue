@@ -1,26 +1,11 @@
 <template>
-  <van-tabbar v-model="active" class="tabbar-view">
-    <router-link to="/home"
-      ><van-tabbar-item icon="home-o">首页</van-tabbar-item></router-link
-    >
-    <router-link to="/sort"
-      ><van-tabbar-item icon="search">分类</van-tabbar-item></router-link
-    >
-    <router-link to="/search">
-      <van-tabbar-item icon="friends-o">搜索</van-tabbar-item></router-link
-    >
-    <router-link to="/cart"
-      ><van-tabbar-item icon="setting-o">购物车</van-tabbar-item></router-link
-    >
-    <router-link to="/my">
-      <van-tabbar-item icon="setting-o">我的</van-tabbar-item></router-link
-    >
+  <van-tabbar v-model="active" class="tabbar-view" active-color="red">
+    <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
+    <van-tabbar-item icon="filter-o" to="/sort">分类</van-tabbar-item>
+    <van-tabbar-item icon="search" to="/search">搜索</van-tabbar-item>
+    <van-tabbar-item icon="cart-o" to="/cart">购物车</van-tabbar-item>
+    <van-tabbar-item icon="contact" to="/my">我的</van-tabbar-item>
   </van-tabbar>
-  <!-- <router-link to="/home">首页</router-link>
-    <router-link to="/sort">分类</router-link>
-    <router-link to="/search">搜索</router-link>
-    <router-link to="/cart">购物车</router-link>
-    <router-link to="/my">我的</router-link> -->
 </template>
 
 <script>
