@@ -9,6 +9,7 @@
     </van-swipe>
     <category-view></category-view>
     <TitleView icon="star-o">单品热卖</TitleView>
+    <SellingView></SellingView>
     <TitleView icon="gift-o">精选活动</TitleView>
     <TitleView icon="label-o">为你推荐</TitleView>
   </div>
@@ -18,6 +19,7 @@
 import { Swipe, SwipeItem } from "vant";
 import CategoryView from "../CategoryView/CategoryView.vue";
 import TitleView from "../TitleView/TitleView.vue";
+import SellingView from "../SellingView/SellingView.vue";
 export default {
   data() {
     return {
@@ -29,7 +31,8 @@ export default {
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
     CategoryView,
-    TitleView
+    TitleView,
+    SellingView
   },
   created() {
     this.$emit("onTitle", this.title);
