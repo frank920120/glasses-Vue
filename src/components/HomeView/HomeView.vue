@@ -2,7 +2,8 @@
   <div class="home-view">
     <van-swipe :autoplay="3000" indicator-color="white" class="banner-view">
       <van-swipe-item v-for="item in slideShow" :key="item.id">
-        <img :src="item.img" alt="item.id" />
+        <!-- <img :src="item.img" alt="item.id" /> -->
+        <img v-lazy="item.img" />
       </van-swipe-item>
     </van-swipe>
   </div>
