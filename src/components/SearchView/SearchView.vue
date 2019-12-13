@@ -3,8 +3,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isNavShow: false
+    };
+  },
+  created() {
+    this.$emit("onNavShow", this.isNavShow);
+  }
+};
 </script>
 
-<style  scoped>
-</style>
+<style scoped></style>

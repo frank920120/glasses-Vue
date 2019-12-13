@@ -1,20 +1,27 @@
 <template>
-  <div class="nav-view">导航栏</div>
+  <van-nav-bar :title="title" fixed />
 </template>
 
 <script>
-export default {};
+import { NavBar } from "vant";
+export default {
+  props: ["title"],
+  components: {
+    [NavBar.name]: NavBar
+  }
+};
 </script>
 
-
 <style scoped>
-.nav-view {
+.van-nav-bar {
   height: 2.8125rem;
   background-color: red;
+  line-height: 2.8125rem;
+  text-align: center;
+}
+.van-nav-bar .van-nav-bar__title {
   color: white;
   font-size: 1rem;
   font-weight: 700;
-  line-height: 2.8125rem;
-  text-align: center;
 }
 </style>

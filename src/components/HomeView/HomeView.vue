@@ -3,7 +3,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      title: "弗兰克眼镜商店"
+    };
+  },
+  created() {
+    this.$emit("onTitle", this.title);
+  }
+};
 </script>
 
 <style scoped></style>

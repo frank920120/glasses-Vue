@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <NavView></NavView>
-    <router-view></router-view>
+    <NavView :title="title" v-if="isNavShow"></NavView>
+    <router-view @onTitle="getTitle" @onNavShow="getNavShow"></router-view>
     <TabView></TabView>
   </div>
 </template>
@@ -14,6 +14,21 @@ export default {
   components: {
     NavView,
     TabView
+  },
+  data() {
+    return {
+      title: "",
+      isNavShow: true
+    };
+  },
+  methods: {
+    getTitle: function(title) {
+      this.title = title;
+      this.isNavShow = true;
+    },
+    getNavShow: function(isNavShow) {
+      this.isNavShow = isNavShow;
+    }
   }
 };
 </script>

@@ -3,9 +3,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      title: "购物车"
+    };
+  },
+  created() {
+    this.$emit("onTitle", this.title);
+  }
+};
 </script>
 
-
-<style scoped>
-</style>
+<style scoped></style>
