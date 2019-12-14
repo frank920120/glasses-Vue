@@ -11,6 +11,7 @@
     <TitleView icon="star-o">单品热卖</TitleView>
     <SellingView></SellingView>
     <TitleView icon="gift-o">精选活动</TitleView>
+    <WinnowView></WinnowView>
     <TitleView icon="label-o">为你推荐</TitleView>
   </div>
 </template>
@@ -20,6 +21,7 @@ import { Swipe, SwipeItem } from "vant";
 import CategoryView from "../CategoryView/CategoryView.vue";
 import TitleView from "../TitleView/TitleView.vue";
 import SellingView from "../SellingView/SellingView.vue";
+import WinnowView from "../WinnowView/WinnowView.vue";
 export default {
   data() {
     return {
@@ -32,7 +34,8 @@ export default {
     [SwipeItem.name]: SwipeItem,
     CategoryView,
     TitleView,
-    SellingView
+    SellingView,
+    WinnowView
   },
   created() {
     this.$emit("onTitle", this.title);
