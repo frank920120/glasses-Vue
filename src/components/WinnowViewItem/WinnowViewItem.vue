@@ -1,7 +1,7 @@
 <template>
   <div class="winnowitem-view">
     <img v-lazy="bgimg" class="winnow-bgimg" />
-    <van-swipe :loop="false" :width="110" :show-indicators="show - indicators">
+    <van-swipe :loop="false" :width="110" :show-indicators="false">
       <van-swipe-item
         v-for="item in items"
         :key="item.id"

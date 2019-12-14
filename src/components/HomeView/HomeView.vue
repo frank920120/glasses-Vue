@@ -13,6 +13,7 @@
     <TitleView icon="gift-o">精选活动</TitleView>
     <WinnowView></WinnowView>
     <TitleView icon="label-o">为你推荐</TitleView>
+    <RecommendView></RecommendView>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import CategoryView from "../CategoryView/CategoryView.vue";
 import TitleView from "../TitleView/TitleView.vue";
 import SellingView from "../SellingView/SellingView.vue";
 import WinnowView from "../WinnowView/WinnowView.vue";
+import RecommendView from "../RecommendView/RecommendView.vue";
 export default {
   data() {
     return {
@@ -35,7 +37,8 @@ export default {
     CategoryView,
     TitleView,
     SellingView,
-    WinnowView
+    WinnowView,
+    RecommendView
   },
   created() {
     this.$emit("onTitle", this.title);
