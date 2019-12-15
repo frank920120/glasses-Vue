@@ -28,7 +28,6 @@ const store = new Vuex.Store({
     changeItemDetailsShow(state, id) {
       state.itemDetailShow = !state.itemDetailShow;
       state.itemId = id;
-      console.log(state.itemDetailShow);
     }
   }
 });

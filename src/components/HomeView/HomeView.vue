@@ -14,8 +14,13 @@
     <WinnowView></WinnowView>
     <TitleView icon="label-o">为你推荐</TitleView>
     <RecommendView></RecommendView>
-
-    <ItemDetailView v-if="detailShow"></ItemDetailView>
+    <transition
+      name="slide"
+      enter-active-class="animated slideInRight duration"
+      leave-active-class="animated slideOutRight duration"
+    >
+      <ItemDetailView v-if="detailShow"></ItemDetailView>
+    </transition>
   </div>
 </template>
 
@@ -69,4 +74,28 @@ export default {
 .home-view .banner-view img {
   width: 100%;
 }
+.duration {
+  animation-duration: 1.5s;
+}
+
+/* 
+.slide-enter-active {
+  transition: 1s ease-in-out;
+  animation: slide 1s reverse;
+}
+.slide-leave-active {
+  transition: 1s ease-in-out;
+  animation: slide 1s;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+} */
 </style>
