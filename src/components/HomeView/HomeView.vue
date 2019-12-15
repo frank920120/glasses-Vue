@@ -14,6 +14,8 @@
     <WinnowView></WinnowView>
     <TitleView icon="label-o">为你推荐</TitleView>
     <RecommendView></RecommendView>
+
+    <ItemDetailView v-if="detailShow"></ItemDetailView>
   </div>
 </template>
 
@@ -24,6 +26,7 @@ import TitleView from "../TitleView/TitleView.vue";
 import SellingView from "../SellingView/SellingView.vue";
 import WinnowView from "../WinnowView/WinnowView.vue";
 import RecommendView from "../RecommendView/RecommendView.vue";
+import ItemDetailView from "../ItemDetailView/ItemDetailView.vue";
 export default {
   data() {
     return {
@@ -38,7 +41,13 @@ export default {
     TitleView,
     SellingView,
     WinnowView,
-    RecommendView
+    RecommendView,
+    ItemDetailView
+  },
+  computed: {
+    detailShow() {
+      return this.$store.state.itemDetailShow;
+    }
   },
   created() {
     this.$emit("onTitle", this.title);

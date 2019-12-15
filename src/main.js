@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import axios from "axios";
 import { routes } from "./router";
 import { Lazyload } from "vant";
+import Vuex from "vuex";
 
 Vue.use(Lazyload);
 Vue.use(VueRouter);
@@ -16,7 +17,24 @@ const router = new VueRouter({
   routes
 });
 
+//vuex
+Vue.use(Vuex);
+const store = new Vuex.Store({
+  state: {
+    itemDetailShow: false,
+    itemId: 0
+  },
+  mutations: {
+    changeItemDetailsShow(state, id) {
+      state.itemDetailShow = !state.itemDetailShow;
+      state.itemId = id;
+      console.log(state.itemDetailShow);
+    }
+  }
+});
+
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount("#app");
