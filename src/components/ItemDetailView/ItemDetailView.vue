@@ -33,7 +33,9 @@
       <div class="desc-view">
         <div class="title">
           <span>自营</span>
+          <p>{{details.name}}</p>
         </div>
+        <p class="desc">{{details.desc}}</p>
       </div>
       <div class="explain-view"></div>
     </div>
@@ -178,5 +180,31 @@ export default {
   border: 0.0625rem solid #bbbbbb;
   background: white;
   box-sizing: border-box;
+}
+.goods-detail-view > .content-view > .desc-view {
+  margin-top: 0.9375rem;
+  padding: 0 1.25rem;
+}
+.goods-detail-view > .content-view > .desc-view > .title {
+  overflow: hidden;
+  margin-bottom: 0.9375rem;
+}
+.goods-detail-view > .content-view > .desc-view > .title > span {
+  background: white;
+  border: 0.0625rem solid red;
+  color: red;
+  float: left;
+  margin-right: 0.8125rem;
+  font-size: 0.75rem;
+}
+.goods-detail-view > .content-view > .desc-view > .title > p {
+  float: left;
+}
+.goods-detail-view > .content-view > .desc-view > .desc {
+  font-size: 0.75rem;
+  line-height: 1.0625rem;
+  color: #7c7c7c;
+  border-bottom: 0.0625rem solid #e8e8e8;
+  padding-bottom: 0.625rem;
 }
 </style>
