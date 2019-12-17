@@ -1,9 +1,10 @@
+
 <template>
-  <div class="itemdetail-view">
+  <div class="goods-detail-view">
     <van-nav-bar title="商品详情" left-arrow @click-left="goback" />
-    <van-swipe :autoplay="3000">
+    <van-swipe :autoplay="3000" class="banner">
       <van-swipe-item v-for="image in details.banners" :key="image.id">
-        <img v-lazy="image.img" class="banner" />
+        <img v-lazy="image.img" />
       </van-swipe-item>
     </van-swipe>
     <div class="content-view">
@@ -12,25 +13,47 @@
         <p class="old-price">原价 ¥ {{ details.oldPrice }}</p>
         <span class="sale-item" v-if="details.sale">特价</span>
       </div>
-      <div class="standard-view"></div>
-      <div class="desc-view"></div>
+      <div class="standard-view">
+        <div class="items">
+          <div v-for="item in details.standardImages" :key="item.color">
+            <img :src="item.img" :alt="item.color" />
+          </div>
+        </div>
+        <div class="side">
+          <select name="eyes">
+            <option value="左眼">左眼</option>
+            <option value="右眼">右眼</option>
+          </select>
+          <select name="degree">
+            <option v-for="(item,index) in details.degree" :value="item" :key="index">{{item}}</option>
+          </select>
+          <van-stepper v-model="value" />
+        </div>
+      </div>
+      <div class="desc-view">
+        <div class="title">
+          <span>自营</span>
+        </div>
+      </div>
       <div class="explain-view"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { NavBar, Swipe, SwipeItem } from "vant";
+import { NavBar, Swipe, SwipeItem, Stepper } from "vant";
 export default {
   data() {
     return {
-      details: []
+      details: [],
+      number: 0
     };
   },
   components: {
     [NavBar.name]: NavBar,
     [Swipe.name]: Swipe,
-    [SwipeItem.name]: SwipeItem
+    [SwipeItem.name]: SwipeItem,
+    [Stepper.name]: Stepper
   },
   computed: {
     getId() {
@@ -52,29 +75,34 @@ export default {
 </script>
 
 <style scoped>
-.itemdetail-view {
-  background: #f2f2f2;
+.goods-detail-view {
+  background: blue;
   position: fixed;
-  top: 0;
   left: 0;
-  height: 100%;
+  top: 0;
+  bottom: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 99;
+  background: #f2f2f2;
+  overflow: auto;
+  padding-top: 2.8125rem;
+  padding-bottom: 3.125rem;
 }
-.banner {
+.goods-detail-view > .banner img {
   width: 100%;
 }
-.content-view {
+.goods-detail-view > .content-view {
   background: white;
-  border: 1px solid #bbbbbb;
+  border: 0.0625rem #bbbbbb solid;
   border-left: 0;
   border-right: 0;
+  margin-bottom: 0.625rem;
 }
-.price-view {
+.goods-detail-view > .content-view > .price-view {
   height: 2.8125rem;
   line-height: 2.8125rem;
 }
-.new-price {
+.goods-detail-view > .content-view > .price-view > .new-price {
   float: left;
   font-size: 1.3125rem;
   font-weight: 900;
@@ -82,14 +110,14 @@ export default {
   margin-left: 1.25rem;
   color: red;
 }
-.old-price {
+.goods-detail-view > .content-view > .price-view > .old-price {
   font-size: 0.75rem;
   color: #7c7c7c;
   float: left;
   margin-right: 1.25rem;
   text-decoration: line-through;
 }
-.sale-item {
+.goods-detail-view > .content-view > .price-view > .sale-item {
   display: inline-block;
   font-size: 0.75rem;
   color: white;
@@ -98,5 +126,57 @@ export default {
   height: 1.125rem;
   line-height: 1.125rem;
   text-align: center;
+}
+.goods-detail-view > .content-view > .standard-view {
+  overflow: hidden;
+}
+.goods-detail-view > .content-view > .standard-view > .items {
+  margin-left: 0.9375rem;
+  float: left;
+  overflow: hidden;
+  width: 14.0625rem;
+}
+.goods-detail-view > .content-view > .standard-view > .items img {
+  width: 3.875rem;
+  height: 3.875rem;
+  float: left;
+  margin-right: 0.625rem;
+  border: 0.0625rem solid black;
+}
+.goods-detail-view > .content-view > .standard-view > .side {
+  overflow: hidden;
+  margin-bottom: 1.3125rem;
+}
+.goods-detail-view > .content-view > .standard-view > .side select {
+  background: white;
+  color: black;
+  float: left;
+  border-radius: 0.3125rem;
+  margin-right: 0.625rem;
+}
+
+.goods-detail-view
+  > .content-view
+  > .standard-view
+  > .van-stepper
+  > .van-stepper__minus,
+.goods-detail-view
+  > .content-view
+  > .standard-view
+  > .van-stepper
+  > .van-stepper__plus {
+  background: white;
+  border: 0.0625rem solid #bbbbbb;
+  border-radius: 0.3125rem;
+}
+.goods-detail-view
+  > .content-view
+  > .standard-view
+  > .van-stepper
+  > .van-stepper__input {
+  width: 3.75rem;
+  border: 0.0625rem solid #bbbbbb;
+  background: white;
+  box-sizing: border-box;
 }
 </style>
