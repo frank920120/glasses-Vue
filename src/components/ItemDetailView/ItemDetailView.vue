@@ -80,11 +80,26 @@
         <img :src="item.img" alt />
       </div>
     </div>
+    <van-goods-action>
+      <van-goods-action-icon icon="like-o" text="收藏" @click="onCollect" />
+      <van-goods-action-icon icon="cart" text="购物车" @click="onCart" />
+      <van-goods-action-button text="加入购物车" @click="onAddCart" type="danger" />
+      <van-goods-action-button primary text="立即购买" @click="onBuy" type="warning" />
+    </van-goods-action>
   </div>
 </template>
 
 <script>
-import { NavBar, Swipe, SwipeItem, Stepper, Icon } from "vant";
+import {
+  NavBar,
+  Swipe,
+  SwipeItem,
+  Stepper,
+  Icon,
+  GoodsAction,
+  GoodsActionButton,
+  GoodsActionIcon
+} from "vant";
 import UserAppraiseView from "../UserAppraiseView/UserAppraiseView.vue";
 export default {
   data() {
@@ -99,6 +114,9 @@ export default {
     [SwipeItem.name]: SwipeItem,
     [Stepper.name]: Stepper,
     [Icon.name]: Icon,
+    [GoodsAction.name]: GoodsAction,
+    [GoodsActionButton.name]: GoodsActionButton,
+    [GoodsActionIcon.name]: GoodsActionIcon,
     UserAppraiseView
   },
   computed: {
@@ -109,6 +127,18 @@ export default {
   methods: {
     goback: function() {
       this.$store.commit("changeItemDetailsShow");
+    },
+    onCollect: function() {
+      console.log("收藏");
+    },
+    onCart: function() {
+      console.log("跳转到购物车");
+    },
+    onAddCart: function() {
+      console.log("添加到购物车");
+    },
+    onBuy: function() {
+      console.log("立即购买");
     }
   },
   created() {
@@ -360,5 +390,14 @@ export default {
 }
 .goods-detail-view > .product-view > .product-border > img {
   width: 100%;
+}
+.goods-detail-view .van-button--warning {
+  background: black;
+  border-color: black;
+  border-radius: 0;
+}
+.goods-detail-view .van-button--danger {
+  background: red;
+  border-radius: 0;
 }
 </style>
