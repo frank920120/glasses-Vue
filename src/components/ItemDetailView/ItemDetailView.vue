@@ -65,9 +65,20 @@
     <div class="product-view">
       <h3>图文详情</h3>
       <h4>产品信息</h4>
+      <table>
+        <tr v-for="(item,index) in details.productMessage" :key="index">
+          <td>{{item.key}}</td>
+          <td>{{item.value}}</td>
+        </tr>
+      </table>
     </div>
     <div class="product-view">
       <h3>产品印花</h3>
+      <div class="product-border" v-for="(item,index) in details.productStamp" :key="index">
+        <h4>{{item.stamp}}</h4>
+        <p>{{item.text}}</p>
+        <img :src="item.img" alt />
+      </div>
     </div>
   </div>
 </template>
@@ -323,5 +334,31 @@ export default {
   line-height: 4.125rem;
   font-size: 1rem;
   font-weight: 900;
+}
+.goods-detail-view > .product-view > table {
+  border: 0.0625rem solid #bbbbbb;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  width: 100%;
+}
+.goods-detail-view > .product-view > table td {
+  border: 0.0625rem solid #bbbbbb;
+  height: 2.375rem;
+  padding-left: 1.0625rem;
+  line-height: 2.375rem;
+}
+.goods-detail-view > .product-view > table td:nth-of-type(1) {
+  width: 5.4375rem;
+  color: #707070;
+}
+.goods-detail-view > .product-view > .product-border {
+  border-bottom: 0.0625rem solid #bbbbbb;
+}
+.goods-detail-view > .product-view > .product-border > p {
+  font-size: 0.8125rem;
+  line-height: 1.0625rem;
+}
+.goods-detail-view > .product-view > .product-border > img {
+  width: 100%;
 }
 </style>
