@@ -1,7 +1,7 @@
 
 <template>
-  <div class="goods-detail-view">
-    <van-nav-bar title="商品详情" left-arrow @click-left="goback" />
+  <div class="goods-detail-view" v-if="details">
+    <van-nav-bar title="商品详情" left-arrow @click-left="goback" fixed />
     <van-swipe :autoplay="3000" class="banner">
       <van-swipe-item v-for="image in details.banners" :key="image.id">
         <img v-lazy="image.img" />
@@ -27,7 +27,7 @@
           <select name="degree">
             <option v-for="(item,index) in details.degree" :value="item" :key="index">{{item}}</option>
           </select>
-          <van-stepper v-model="value" />
+          <van-stepper v-model="number" />
         </div>
       </div>
       <div class="desc-view">
@@ -37,17 +37,48 @@
         </div>
         <p class="desc">{{details.desc}}</p>
       </div>
-      <div class="explain-view"></div>
+      <div class="explain-view">
+        <span>说明</span>
+        <p>{{details.explain}}</p>
+        <van-icon name="arrow" class="icon" />
+      </div>
+    </div>
+    <div class="appraise-view">
+      <div class="appraise-title">
+        <span class="title">商品评价({{details.appraise.num}})</span>
+        <span class="rate-score">
+          好评{{details.appraise.rateScore}}%
+          <van-icon class="icon" name="arrow" />
+        </span>
+      </div>
+      <div class="appraise-content">
+        <div class="box" ref="scrollView">
+          <UserAppraiseView
+            ref="userAppraise"
+            v-for="(item,index) in details.appraise.list"
+            :key="index"
+            :appraise="item"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="product-view">
+      <h3>图文详情</h3>
+      <h4>产品信息</h4>
+    </div>
+    <div class="product-view">
+      <h3>产品印花</h3>
     </div>
   </div>
 </template>
 
 <script>
-import { NavBar, Swipe, SwipeItem, Stepper } from "vant";
+import { NavBar, Swipe, SwipeItem, Stepper, Icon } from "vant";
+import UserAppraiseView from "../UserAppraiseView/UserAppraiseView.vue";
 export default {
   data() {
     return {
-      details: [],
+      details: null,
       number: 0
     };
   },
@@ -55,7 +86,9 @@ export default {
     [NavBar.name]: NavBar,
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
-    [Stepper.name]: Stepper
+    [Stepper.name]: Stepper,
+    [Icon.name]: Icon,
+    UserAppraiseView
   },
   computed: {
     getId() {
@@ -72,6 +105,17 @@ export default {
       .get("/json/goods-detail.json")
       .then(res => (this.details = res.data))
       .catch(err => console.log(err));
+  },
+  beforeUpdate() {
+    this.$nextTick(function() {
+      let userAppraise = this.$refs.userAppraise[0].$el;
+      let width = userAppraise.offsetWidth;
+      let computedStyle = getComputedStyle(userAppraise, null);
+      let marginR = parseInt(computedStyle.marginRight);
+      let temp =
+        this.details.appraise.list.length * (width + marginR * 2) + "px";
+      this.$refs.scrollView.style.width = temp;
+    });
   }
 };
 </script>
@@ -206,5 +250,78 @@ export default {
   color: #7c7c7c;
   border-bottom: 0.0625rem solid #e8e8e8;
   padding-bottom: 0.625rem;
+}
+.goods-detail-view > .content-view > .explain-view {
+  padding: 0 1.75rem 0 1.4375rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  overflow: hidden;
+  font-size: 0.75rem;
+}
+.goods-detail-view > .content-view > .explain-view > span {
+  color: black;
+  font-weight: 800;
+  margin-right: 1.4375rem;
+  float: left;
+}
+.goods-detail-view > .content-view > .explain-view > p {
+  color: #7c7c7c;
+  float: left;
+}
+.goods-detail-view > .content-view > .explain-view > .icon {
+  float: right;
+  color: #7c7c7c;
+  height: 2.5rem;
+  line-height: 2.5rem;
+}
+.goods-detail-view > .appraise-view {
+  background: white;
+  margin-bottom: 0.625rem;
+}
+.appraise-title {
+  padding: 0.8125rem 1.5625rem 0.8125rem 1.25rem;
+}
+.appraise-content > .title {
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+.rate-score {
+  color: red;
+  font-size: 0.875rem;
+  float: right;
+  vertical-align: middle;
+}
+.goods-detail-view > .appraise-view > .appraise-title > .rate-score > .icon {
+  color: #7c7c7c;
+  vertical-align: middle;
+}
+.appraise-content {
+  overflow: auto;
+  padding-left: 0.9375rem;
+  padding-bottom: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.box {
+  overflow: hidden;
+}
+.goods-detail-view > .product-view {
+  padding: 0.9375rem 0.625rem;
+  background: white;
+  margin-bottom: 0.625rem;
+}
+.goods-detail-view > .product-view > h3 {
+  background: black;
+  color: white;
+  border-radius: 0.3125rem;
+  text-align: center;
+  height: 1.875rem;
+  line-height: 1.875rem;
+  font-size: 0.875rem;
+}
+.goods-detail-view > .product-view h4 {
+  line-height: 4.125rem;
+  font-size: 1rem;
+  font-weight: 900;
 }
 </style>
