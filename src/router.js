@@ -6,8 +6,8 @@ import SearchView from "./components/SearchView/SearchView.vue";
 export const routes = [
   { path: "/", redirect: "/home" },
   { path: "/home", component: HomeView },
-  { path: "/cart", component: CartView },
-  { path: "/my", component: MyView },
+  { path: "/sort", component: SortView },
   { path: "/search", component: SearchView },
-  { path: "/sort", component: SortView }
+  { path: "/cart", component: CartView },
+  { path: "/my", component: MyView }
 ];

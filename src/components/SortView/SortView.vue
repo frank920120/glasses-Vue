@@ -116,7 +116,6 @@ export default {
   box-sizing: border-box;
   border-radius: 0.3125rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 .assort-view > .main-view > .main-wrapper > .goods-wrapper > .img {
