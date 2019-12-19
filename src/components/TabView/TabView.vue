@@ -1,5 +1,10 @@
 <template>
-  <van-tabbar v-model="active" class="tabbar-view" active-color="red" @change="onClickTab">
+  <van-tabbar
+    v-model="active"
+    class="tabbar-view"
+    active-color="red"
+    @change="onClickTab"
+  >
     <van-tabbar-item icon="home-o" to="/home">首页</van-tabbar-item>
     <van-tabbar-item icon="filter-o" to="/sort">分类</van-tabbar-item>
     <van-tabbar-item icon="search" to="/search">搜索</van-tabbar-item>

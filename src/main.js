@@ -32,6 +32,13 @@ const store = new Vuex.Store({
   }
 });
 
+router.beforeEach((to, from, next) => {
+  const routesArray = router.options.routes.map(route => route.path);
+  let index = routesArray.indexOf(to.path) - 1;
+  window.localStorage.setItem("itemIndex", index);
+  next();
+});
+
 new Vue({
   render: h => h(App),
   router,
