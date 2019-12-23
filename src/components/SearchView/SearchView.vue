@@ -15,29 +15,34 @@
       </div>
       <van-tag
         round
-        @click="onHistoryItem"
+        @click="onHistoryItem(tag)"
         v-for="(tag, index) in historyList"
         :key="index"
         >{{ tag }}</van-tag
       >
     </div>
+    <transition name="slide">
+      <SearchDetailView v-if="searchDetailShow" @onBack="searchDetailHide" />
+    </transition>
   </div>
 </template>
 
 <script>
-import { Search } from "vant";
-import { Tag } from "vant";
+import { Search, Tag } from "vant";
+import SearchDetailView from "../SearchDetailView/SearchDetailView.vue";
 export default {
   data() {
     return {
       isNavShow: false,
       value: "",
-      historyList: ["明月", "海昌", "隐形眼镜 "]
+      historyList: ["明月", "海昌", "隐形眼镜 "],
+      searchDetailShow: false
     };
   },
   components: {
     [Search.name]: Search,
-    [Tag.name]: Tag
+    [Tag.name]: Tag,
+    SearchDetailView
   },
   created() {
     this.$emit("onNavShow", this.isNavShow);
@@ -45,9 +50,16 @@ export default {
   methods: {
     onSearch: function() {
       console.log(this.value);
+      this.searchDetailShow = true;
     },
     onClear: function() {
       this.value = "";
+    },
+    onHistoryItem: function(item) {
+      this.value = item;
+    },
+    searchDetailHide: function() {
+      this.searchDetailShow = false;
     }
   }
 };
@@ -81,5 +93,23 @@ export default {
 }
 .search-view > .history-view > .van-tag {
   margin: 0 0.625rem;
+}
+
+.slide-enter-active {
+  animation: slide 1s;
+}
+.slide-leave-active {
+  animation: slide 1s reverse;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+    transition: 1s ease all;
+  }
+  to {
+    transform: translateX(0);
+    transition: 1s ease all;
+  }
 }
 </style>

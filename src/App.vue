@@ -34,9 +34,10 @@ export default {
 </script>
 
 <style>
-#app {
+body {
   background-color: #f2f2f2;
 }
+
 .van-nav-bar {
   height: 2.8125rem;
   background-color: red;
