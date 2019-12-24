@@ -55,8 +55,9 @@ export default {
   },
   methods: {
     onSearch: function() {
-      console.log(this.value);
-      this.searchDetail();
+      if (this.value) {
+        this.searchDetail();
+      }
     },
     onClear: function() {
       this.value = "";
