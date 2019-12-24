@@ -1,18 +1,22 @@
 <template>
   <div class="search-detail-view">
     <van-nav-bar fixed title="搜索详情" left-arrow @click-left="onBack" />
-    <div>
-      {{ serchDetails.searchKey }}
-    </div>
+    <SearchItemView
+      v-for="(goods, index) in serchDetails.list"
+      :key="index"
+      :goods="goods"
+    ></SearchItemView>
   </div>
 </template>
 
 <script>
 import { NavBar } from "vant";
+import SearchItemView from "../SearchItemView/SearchItemView.vue";
 export default {
   props: ["serchDetails"],
   components: {
-    [NavBar.name]: NavBar
+    [NavBar.name]: NavBar,
+    SearchItemView
   },
   methods: {
     onBack: function() {
