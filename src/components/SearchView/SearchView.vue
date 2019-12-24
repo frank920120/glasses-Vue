@@ -22,13 +22,17 @@
       >
     </div>
     <transition name="slide">
-      <SearchDetailView v-if="searchDetailShow" @onBack="searchDetailHide" />
+      <SearchDetailView
+        v-if="searchDetailShow"
+        @onBack="searchDetailHide"
+        :serchDetails="serchDetails"
+      />
     </transition>
   </div>
 </template>
 
 <script>
-import { Search, Tag } from "vant";
+import { Search, Tag, Toast } from "vant";
 import SearchDetailView from "../SearchDetailView/SearchDetailView.vue";
 export default {
   data() {
@@ -36,12 +40,14 @@ export default {
       isNavShow: false,
       value: "",
       historyList: ["明月", "海昌", "隐形眼镜 "],
-      searchDetailShow: false
+      searchDetailShow: false,
+      serchDetails: []
     };
   },
   components: {
     [Search.name]: Search,
     [Tag.name]: Tag,
+    [Toast.name]: Toast,
     SearchDetailView
   },
   created() {
@@ -50,7 +56,7 @@ export default {
   methods: {
     onSearch: function() {
       console.log(this.value);
-      this.searchDetailShow = true;
+      this.searchDetail();
     },
     onClear: function() {
       this.value = "";
@@ -60,6 +66,24 @@ export default {
     },
     searchDetailHide: function() {
       this.searchDetailShow = false;
+    },
+    closeLoading: function() {
+      this.searchDetailShow = true;
+    },
+    searchDetail: function() {
+      Toast.loading({
+        message: "加载中...",
+        forbidClick: true,
+        duration: 0,
+        onClose: this.closeLoading
+      });
+      this.axios
+        .get("/json/search-detail.json")
+        .then(res => {
+          this.serchDetails = res.data;
+          Toast.clear();
+        })
+        .catch(err => console.log(err));
     }
   }
 };

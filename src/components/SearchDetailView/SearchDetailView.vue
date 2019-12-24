@@ -1,12 +1,16 @@
 <template>
   <div class="search-detail-view">
     <van-nav-bar fixed title="搜索详情" left-arrow @click-left="onBack" />
+    <div>
+      {{ serchDetails.searchKey }}
+    </div>
   </div>
 </template>
 
 <script>
 import { NavBar } from "vant";
 export default {
+  props: ["serchDetails"],
   components: {
     [NavBar.name]: NavBar
   },
